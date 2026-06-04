@@ -20,8 +20,8 @@ Produce a step-by-step refactoring guide for: **$ARGUMENTS**
 ## Refactoring types
 
 ### Style transformation (declarative / imperative)
-- **To declarative:** Replace `for`/`while` loops with `.map()`, `.filter()`, `.reduce()`, `.find()`, `.flatMap()`, `.some()`, `.every()`. Prefer method chaining. Eliminate mutable accumulators where possible.
-- **To imperative:** Replace functional chains with explicit loops when the user requests it (e.g., for readability in deeply nested transforms, or when early termination matters for performance).
+- **To declarative:** Replace imperative loops with functional/declarative equivalents available in the project's language. Prefer method chaining and immutable patterns where possible.
+- **To imperative:** Replace functional/declarative chains with explicit loops when the user requests it (e.g., for readability in deeply nested transforms, or when early termination matters for performance).
 
 ### Time complexity improvement
 - Identify the current time complexity and explain it
@@ -52,23 +52,23 @@ Explain the specific issue:
 Numbered steps walking the user through the refactor. Each step should:
 - Tell the user exactly what to change (which lines, which file)
 - Show the **before** snippet and the **after** snippet in fenced code blocks
-- Explain **why** the change works — what JavaScript feature or pattern is being used, and why it produces the same result
-- Call out gotchas (e.g., "`.reduce()` needs an initial value here because the array could be empty — without it, you'd get a TypeError")
+- Explain **why** the change works — what language feature or pattern is being used, and why it produces the same result
+- Call out gotchas — common mistakes, edge cases, or subtle behavior differences between the old and new approach
 
 ### 5. Impact check
 List every function and file that calls the refactored code. For each one, state whether it needs changes (and what) or whether it's unaffected because the public interface didn't change.
 
 ### 6. Verify
 Tell the user how to confirm the refactor didn't break anything:
-- What test functions to run (reference actual test functions in the project like those in `field_test_functions.js` or `budget_test_functions.js`)
-- What to spot-check in the spreadsheet
+- What tests to run (reference actual test files, test commands, or test functions in the project)
+- What to spot-check in the application's output or UI
 - What the output should look like if it's working correctly
 
 ## Rules
 
 - **Guide, don't execute.** This skill produces instructions for the user to follow. Do not edit files directly.
 - **Never change behavior.** A refactor must produce the same outputs for the same inputs. If you discover a bug while analyzing, flag it separately — do not fold a fix into the refactor steps.
-- **Follow project conventions.** Use `const`/`let` (never `var`), template literals, `.includes()` over `.indexOf()`, and the project's JSDoc style (concise description, typed params, two `@example` lines).
+- **Follow project conventions.** Match the existing coding style, naming conventions, documentation patterns, and idioms established in the codebase.
 - **One concern at a time.** If the user asks for a DRY refactor, don't also restyle to declarative unless asked. Keep the guide focused.
 - **Preserve the public interface.** Function names, parameter signatures, and return shapes must not change unless the user explicitly requests it.
 - **Show your reasoning.** When choosing between two valid approaches, briefly explain why you recommend one over the other and let the user decide.

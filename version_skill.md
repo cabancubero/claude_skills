@@ -15,7 +15,7 @@ If the user provides arguments: $ARGUMENTS
 
 Parse them as `<bump> [project]`:
 - **bump** (required): One of `major`, `minor`, `patch`, or an explicit version like `2.1.0`
-- **project** (optional): A short project name to scope the tag. Defaults to `fieldplan-analyzer`.
+- **project** (optional): A short project name to scope the tag. Defaults to the repository name or primary project directory.
 
 If no arguments are provided, ask the user what kind of bump they want (`major`, `minor`, or `patch`).
 
@@ -26,7 +26,7 @@ Tags are namespaced by project to avoid collisions in the monorepo:
 ```
 <project>/v<MAJOR>.<MINOR>.<PATCH>
 ```
-Examples: `fieldplan-analyzer/v1.0.0`, `fieldplan-analyzer/v1.1.0`
+Examples: `my-project/v1.0.0`, `my-project/v1.1.0`
 
 ### Changelog format
 Follows [Keep a Changelog](https://keepachangelog.com/). Categories map to the repo's commit verb convention:
@@ -43,11 +43,10 @@ Follows [Keep a Changelog](https://keepachangelog.com/). Categories map to the r
 | `test:` | **Added** (under test context) |
 
 ### Project-to-path mapping
-| Project key | Changelog path | Git log path filter |
-|---|---|---|
-| `fieldplan-analyzer` | `fieldplan_analyzer/CHANGELOG.md` | `fieldplan_analyzer/` |
 
-If the user specifies a project not in this table, ask them for the changelog path and log path filter, then proceed.
+Determine the changelog path and git log path filter by inspecting the repository structure. For monorepos, each project subdirectory should have its own `CHANGELOG.md`. For single-project repos, use the root `CHANGELOG.md`.
+
+If the mapping cannot be inferred, ask the user for the changelog path and log path filter, then proceed.
 
 ## Steps
 

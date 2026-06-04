@@ -20,7 +20,7 @@ Use that context to identify the target project directory, specific sections to 
 Gather facts — do not guess or use generic filler:
 
 - **Directory structure**: `ls` the project root and key subdirectories to understand organization
-- **Config files**: Read `package.json`, `pyproject.toml`, `.clasp.json`, `mkdocs.yml`, or equivalent for project name, description, dependencies, and scripts
+- **Config files**: Read the project's config files (e.g., `package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, `mkdocs.yml`, or equivalent) for project name, description, dependencies, and scripts
 - **Entry points**: Identify and read the main source files — classes, trigger functions, index files
 - **Architecture patterns**: Note class hierarchies, config-driven patterns, shared constants, module boundaries
 - **Git history**: `git log --oneline -20` for recent activity; `git log --oneline --all | tail -5` for project origin
@@ -50,10 +50,9 @@ Example:
 ````markdown
 ```mermaid
 graph TD
-    A[Google Sheets] --> B[FieldPlan Class]
-    B --> C[TacticProgram Analysis]
-    C --> D[Budget Comparison]
-    D --> E[Email Notification]
+    A[Data Source] --> B[Core Module]
+    B --> C[Processing Layer]
+    C --> D[Output / Notification]
 ```
 ````
 
@@ -85,7 +84,7 @@ Derive this from reading the actual source files. Use the project's own names an
 - How to run locally
 - How to deploy
 
-Only include steps you can verify from the project's config files and scripts. If there's a `package.json` with scripts, reference them. If there's a `.clasp.json`, mention clasp. Don't invent steps.
+Only include steps you can verify from the project's config files and scripts. Reference actual build/run commands found in the project configuration. Don't invent steps.
 
 #### Configuration
 
@@ -128,7 +127,7 @@ Tell the user:
 ## Important rules
 
 - Every technical claim must come from reading the actual source files — never assume
-- Use the project's own terminology — if the code calls it `TacticProgram`, the README calls it `TacticProgram`
+- Use the project's own terminology — if the code uses specific class, module, or domain names, the README should use those same names
 - Keep it concise — a README should be readable in 3-5 minutes
 - Use Mermaid for diagrams (renders natively on GitHub)
 - Don't include badges, shields, or decorative elements unless the user requests them

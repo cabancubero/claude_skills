@@ -1,6 +1,6 @@
 ---
 name: guide
-description: Generate a detailed, step-by-step implementation guide for a specific phase or feature of the 2026 Budget and Field Analyzer project. Invoke manually when ready to build a new phase.
+description: Generate a detailed, step-by-step implementation guide for a specific phase or feature of the project. Invoke manually when ready to build a new phase.
 argument-hint: [phase-number-or-topic]
 disable-model-invocation: true
 allowed-tools: Read, Grep, Glob, WebFetch, WebSearch, Task, Bash
@@ -12,9 +12,9 @@ Create a comprehensive, step-by-step implementation guide for: **$ARGUMENTS**
 
 ## Your task
 
-1. When in doubt, reorient yourself to the purpose and structure of the project by reviewing the following files: `_column_mappings.js`, `_globals.js`, `field_test_functions.js`, and `budget_test_functions.js`
-2. Read any previously completed implementation guides in `guides/` to maintain consistency in style, depth, and patterns.
-4. Write the complete implementation guide as a new file in `guides/`
+1. When in doubt, reorient yourself to the purpose and structure of the project by reviewing key configuration files, entry points, and shared constants/utilities in the codebase.
+2. Read any previously completed implementation guides in `guides/` (or the project's documentation directory) to maintain consistency in style, depth, and patterns.
+3. Write the complete implementation guide as a new file in the appropriate documentation directory.
 
 ## Writing rules — follow these exactly
 
@@ -42,22 +42,14 @@ Create a comprehensive, step-by-step implementation guide for: **$ARGUMENTS**
 
 **Explain every terminal command.** When a command has flags (like `gcloud functions deploy --gen2 --memory=4GiB`), explain what each flag does either inline or in a note block after the command.
 
-**Reference real project values.** Use the actual project IDs and file paths from this project — not generic placeholders. Read `.env` and `config/settings.py` to get these values.
+**Reference real project values.** Use the actual project IDs, file paths, and configuration values from this project — not generic placeholders. Read configuration files (e.g., `.env`, `config/`, `settings.*`, `*.config.*`) to get these values.
 
-**Use ES2017+ conventions.** The project runs on the V8 runtime (`appsscript.json` has `"runtimeVersion": "V8"`). Use modern syntax throughout:
-- `const` / `let` — never `var`
-- Arrow functions for callbacks (`arr.map(x => x.id)`, not `arr.map(function(x) { return x.id; })`)
-- Template literals, destructuring, default parameters, spread/rest operators
-- `padStart`/`padEnd`, `includes`, `Object.entries`/`Object.values`, `Set`, `Map`
-- `.find()`, `.filter()`, `.map()`, `.reduce()`, `.flatMap()`, `.forEach()` over manual for-loops
-- Shorthand property names (`{ queries, errors }` not `{ queries: queries, errors: errors }`)
-
-**Use AppsScript.** The project is based on Javascript in Apps Script with a forthcoming TypeScript update.
+**Follow the project's language and style conventions.** Read the codebase to identify the language version, framework, and coding conventions in use. Match the existing style throughout the guide — use the same syntax patterns, naming conventions, and idioms already established in the project.
 
 **Style for Guide.** Match this pattern:
 - Each major section starts with "Understand [concept]" before building
-- Code files include a brief module-level JSDoc: one sentence on what the file does, then a list of its exported functions. No pipeline or local-run prose.
-- Function JSDocs: one-line summary of what the function does. Then `@param` and `@returns` tags — keep descriptions to a few words, not full sentences. Flatten `@param` sub-fields into a single `@param {Object} params` with a parenthetical of key names. Always include exactly two `@example` lines — one working case and one edge case — each starting with the function call (not a variable assignment), showing the return value with `// =>`, using realistic project data, and fitting on 1–2 lines.
+- Code files include a brief module-level doc comment: one sentence on what the file does, then a list of its exported functions/classes
+- Function/method documentation: one-line summary, then parameter and return type annotations following the project's existing documentation style
 - Comments explain WHY, not just WHAT
 
 ## Guide structure template
@@ -111,7 +103,6 @@ Create a comprehensive, step-by-step implementation guide for: **$ARGUMENTS**
 
 ## Important context
 
-- The project root is at `/Users/richardscc1/alf_dev/appsscript`
-- Clasp located at `/Users/richardscc1/alf_dev/appsscript/fieldplan_analyzer/.clasp.json`
+- Identify the project root and key tool/build configuration paths by reading the codebase before writing the guide.
 
-Write the guide to `guides/` with a descriptive filename like `phase1_implementation_guide.md`.
+Write the guide to the project's documentation directory (e.g., `guides/`, `docs/`) with a descriptive filename like `phase1_implementation_guide.md`.

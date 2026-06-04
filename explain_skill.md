@@ -17,13 +17,13 @@ Explain the code or concept specified by: **$ARGUMENTS**
    - **Convention or concept** — find representative examples in the codebase.
    - **Inline code snippet** — the user pasted code directly (from a guide, a draft, an example file, or from memory). Use the snippet as-is. It may not exist in the codebase yet.
 2. For codebase code: read any closely related code it depends on (callers, callees, constants, types).
-3. For inline snippets: search the codebase for related code that the snippet references or would interact with (e.g., if it calls `resolveCountyName()`, read that function). Use what you find to enrich the explanation with project-specific context.
+3. For inline snippets: search the codebase for related code that the snippet references or would interact with (e.g., if it calls a utility function, read that function). Use what you find to enrich the explanation with project-specific context.
 4. Produce a clear, educational explanation following the format below.
 
 ## Explanation format
 
 ### Overview
-One paragraph summarizing **what** the code does and **why** it exists in the project. Relate it to the broader system (e.g., "This function is called during the trigger cycle when new field plan rows are detected").
+One paragraph summarizing **what** the code does and **why** it exists in the project. Relate it to the broader system (e.g., "This function is called during {{EXAMPLE_EXECUTION_CONTEXT}} when {{EXAMPLE_TRIGGER_CONDITION}}").
 
 ### Line-by-line walkthrough
 Walk through the code in logical sections. For each section:
@@ -33,10 +33,10 @@ Walk through the code in logical sections. For each section:
 
 ### Key concepts
 If the code uses patterns or conventions that a learner might not know, explain them:
-- **Language features** — destructuring, spread, `padStart`, `Set`, arrow functions, etc.
-- **Design patterns** — strategy pattern, configuration-driven classes, reduce walkers, etc.
-- **Apps Script specifics** — `PropertiesService`, `getDataRange().getValues()`, sheet vs spreadsheet, etc.
-- **Project conventions** — `normalizeField()` for multi-select splitting, `FIELD_PLAN_COLUMNS` for column indices, etc.
+- **Language features** — destructuring, spread, generics, closures, iterators, etc.
+- **Design patterns** — strategy pattern, configuration-driven classes, dependency injection, etc.
+- **Runtime/framework specifics** — APIs, built-in services, or framework conventions unique to the project's stack
+- **Project conventions** — naming patterns, shared utilities, configuration constants, or domain-specific helpers used throughout the codebase
 
 ### Data flow
 Trace the data from input to output:
@@ -52,7 +52,7 @@ For inline snippets that don't exist in the codebase yet: identify what existing
 ## Writing rules
 
 - **Teach, don't just describe.** "This loops through rows" is a description. "This iterates each row because the form data arrives as a 2D array where each inner array is one submission" is teaching.
-- **Use the project's actual data.** When giving examples of what a value looks like, use realistic values from this project (org names, county names, tactic types) — not generic placeholders.
-- **Define terms on first use.** If you mention "Likert value", "FIPS code", "zero-padded", or "denormalized", explain what it means the first time it appears.
-- **Compare approaches when useful.** If the code uses a `.reduce()` where a `for` loop would also work, briefly explain why the author may have chosen the functional approach (immutability, chaining, expressiveness).
-- **No condescension.** Assume the reader is intelligent but unfamiliar with this specific codebase and possibly with some JavaScript patterns. Explain without being patronizing.
+- **Use the project's actual data.** When giving examples of what a value looks like, use realistic values from this project's domain — not generic placeholders.
+- **Define terms on first use.** If you mention domain-specific terms, technical jargon, or data format conventions, explain what they mean the first time they appear.
+- **Compare approaches when useful.** If the code uses one approach where an alternative would also work, briefly explain why the author may have chosen their approach (immutability, performance, readability, expressiveness).
+- **No condescension.** Assume the reader is intelligent but unfamiliar with this specific codebase and possibly with some of the language or framework patterns used. Explain without being patronizing.

@@ -50,27 +50,27 @@ Write the message in this format:
 ## Examples
 
 ```
-add: Create meeting scraper Cloud Function
+add: Create {{FEATURE_NAME}} module
 
-- Scrapes Granicus portal for Birmingham council meeting metadata
-- Inserts new meetings into Supabase with deduplication check
-- Publishes Pub/Sub messages to trigger PDF and MP4 downloads
+- {{DESCRIPTION_OF_PRIMARY_FUNCTIONALITY}}
+- {{DESCRIPTION_OF_SECONDARY_FUNCTIONALITY}}
+- {{DESCRIPTION_OF_INTEGRATION_POINT}}
 ```
 
 ```
-update: Extend PDF parser with structured data extraction
+update: Extend {{COMPONENT_NAME}} with new capabilities
 
-- Extract agenda items, votes, attendance, and speakers from minutes
-- Add regex patterns for GL accounts and resolution numbers
-- Store extracted data in dedicated Supabase tables
+- {{DESCRIPTION_OF_ENHANCEMENT_1}}
+- {{DESCRIPTION_OF_ENHANCEMENT_2}}
+- {{DESCRIPTION_OF_STORAGE_OR_OUTPUT_CHANGE}}
 ```
 
 ```
-config: Set up GCS bucket with lifecycle policies
+config: Set up {{INFRASTRUCTURE_COMPONENT}}
 
-- Create bhm-council-meetings-data bucket in US multi-region
-- Configure Standard -> Nearline (180 days) -> Coldline (365 days) transitions
-- Add bucket_lifecycle.json to config/
+- {{DESCRIPTION_OF_RESOURCE_CREATION}}
+- {{DESCRIPTION_OF_CONFIGURATION_RULES}}
+- {{DESCRIPTION_OF_CONFIG_FILE_CHANGE}}
 ```
 
 ## Important rules

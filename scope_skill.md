@@ -51,7 +51,7 @@ Adapt the questions to what you learned in Phase 1. Skip areas that are already 
 **Normalization and transformation**
 - Are there fields that need cleaning, normalizing, or parsing?
 - Are there multi-valued fields that need to be split into rows?
-- Are there lookups or resolution steps? (fuzzy matching, ID resolution, FIPS codes, etc.)
+- Are there lookups or resolution steps? (fuzzy matching, ID resolution, code lookups, etc.)
 - What existing utilities or resolvers can be reused?
 
 **Calculations and derived values**
@@ -140,7 +140,7 @@ Follow this structure. Omit sections that don't apply (e.g., skip "Existing Code
 
 ### Writing rules
 
-- **Be concrete, not abstract.** Column names, file paths, function signatures, formula arithmetic. A scope document that says "calculate metrics" is useless; one that says "`weekly_attempts = weekly_volunteers * weekly_hours * hourly_attempts`" is actionable.
+- **Be concrete, not abstract.** Column names, file paths, function signatures, formula arithmetic. A scope document that says "calculate metrics" is useless; one that says "`total_cost = unit_price * quantity * tax_rate`" is actionable.
 - **Use real names from the project.** If you explored the codebase, reference actual constants, config keys, column mappings, and function names — not generic placeholders.
 - **Primary keys and grain are mandatory.** Every output table/file must state its grain and primary key. This is the single most important scoping decision.
 - **Capture decisions, not options.** The question phase resolved ambiguities. The scope document should state what *will* happen, not present alternatives.
